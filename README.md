@@ -7,5 +7,5 @@ Implementações em C++ de estruturas de dados organizadas em árvore e seus alg
 #### Features
 - Binary Tree & Binary Search Tree
     - Parte do código foi reproduzida do livro "Jumping into C++" do [@alexallain](https://twitter.com/alexallain)
-- Heap Max (TO DO)
+- Heap Max
 - Heap Min (TO DO)
