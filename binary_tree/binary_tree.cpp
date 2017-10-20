@@ -111,7 +111,12 @@ Node* BinaryTree::search(Node* node, int key_) const {
  * Destroy the binary tree, turning it a empty tree
  */
 void BinaryTree::destroy() {
-	destroy(m_root);
+	if (m_root != NULL) {
+		destroy(m_root->left);
+		destroy(m_root->right);
+		delete m_root;
+		m_root = NULL;
+	}
 }
 
 /**
@@ -133,6 +138,7 @@ int main() {
 	bt.insert(4);
 	bt.insert(20);
 	bt.print();
+	bt.destroy();
+	bt.print();
 	std::cout << std::endl;
-	Node* res = bt.search(20);
 }

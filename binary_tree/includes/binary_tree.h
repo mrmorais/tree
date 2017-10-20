@@ -19,8 +19,9 @@ class BinaryTree {
 		Node* search(Node* node, int key_) const;
 
 		void destroy();
+		void destroy(Node* node);
 		void remove(int key_);
-		
+
 		void print() const;
 		void print(Node* node) const;
 };
