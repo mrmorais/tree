@@ -20,7 +20,11 @@ class BinaryTree {
 
 		void destroy();
 		void destroy(Node* node);
+
+		Node* findMax(Node* node) const;
+
 		void remove(int key_);
+		Node* remove(Node* node, int key_);
 
 		void print() const;
 		void print(Node* node) const;

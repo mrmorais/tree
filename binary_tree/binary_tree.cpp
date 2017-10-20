@@ -131,6 +131,49 @@ void BinaryTree::destroy(Node* node) {
 	}
 }
 
+/**
+ * Find the greatest key value on the subtree
+ * @param node subtree's node
+ */
+Node* BinaryTree::findMax(Node* node) const {
+	if (node == NULL) return NULL;
+	if (node->right == NULL) return node;
+	return findMax(node->right);
+}
+
+void BinaryTree::remove(int key_) {
+	remove(m_root, key_);
+}
+
+Node* BinaryTree::remove(Node* node, int key_) {
+	if (node == NULL) return NULL;
+	if (node->key == key_) {
+		// The first two cases handle having zero or one child node
+		if (node->left == NULL) {
+			Node* n_right_subtree = node->right;
+			delete node;
+			// this might return NULL if there are zero child nodes
+			return n_right_subtree;
+		}
+		if (node->right == NULL) {
+			Node* n_left_subtree = node->left;
+			delete node;
+			// this will always return a valid node, never NULL
+			return n_left_subtree;
+		}
+		Node* max_node = findMax(m_root->left);
+		max_node->left = node->left;
+		max_node->right = node->right;
+		delete node;
+		return max_node;
+	} else if (key_ < node->key) {
+		node->left = remove(node->left, key_);
+	} else {
+		node->right = remove(node->right, key_);
+	}
+	return node;
+}
+
 int main() {
 	BinaryTree bt = BinaryTree();
 	bt.insert(10);
@@ -138,7 +181,8 @@ int main() {
 	bt.insert(4);
 	bt.insert(20);
 	bt.print();
-	bt.destroy();
+	std::cout << std::endl;
+	bt.remove(20);
 	bt.print();
 	std::cout << std::endl;
 }
