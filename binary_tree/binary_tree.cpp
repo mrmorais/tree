@@ -9,6 +9,7 @@ BinaryTree::BinaryTree() {
 
 /**
  * Constructor that creates a tree with a initial node
+ * @param key_ initial value
  */
 BinaryTree::BinaryTree(int key_) {
 	m_root = new Node;
@@ -17,7 +18,20 @@ BinaryTree::BinaryTree(int key_) {
 	m_root->right = NULL;
 }
 
-void BinaryTree::recursive_insert(Node* & node, int key_) {
+/**
+ * Insert a new node into the binary tree
+ * @param key_ value of the node
+ */
+void BinaryTree::insert(int key_) {
+	insert(m_root, key_);
+}
+
+/**
+ * Recursive insertion. It receives the reference node
+ * @param node reference node to insert the key into
+ * @param key_ value to be inserted into the subtree
+ */
+void BinaryTree::insert(Node* & node, int key_) {
 	// base case - reached an empty tree and need to insert a new node
 	if (node == NULL) {
 		node = new Node;
@@ -30,31 +44,67 @@ void BinaryTree::recursive_insert(Node* & node, int key_) {
 	// depending on the value of the node
 	if (key_ < node->key) {
 		// Insert into the left
-		recursive_insert(node->left, key_);
+		insert(node->left, key_);
 	} else {
 		// Insert into the right
-		recursive_insert(node->right, key_);
+		insert(node->right, key_);
 	}
 }
 
-void BinaryTree::insert(int key_) {
-	recursive_insert(m_root, key_);
+/**
+ * Prints a representation of the binary tree
+ */
+void BinaryTree::print() const {
+	print(m_root);
 }
 
-void BinaryTree::printSubtree(Node* node) const {
+/**
+ * Prints a representation on a subtree
+ * @param node subtree's root
+ */
+void BinaryTree::print(Node* node) const {
 	if (node == NULL) {
 		std::cout << "";
 	} else {
 		std::cout << "" << node->key << "{";
-		printSubtree(node->left);
+		print(node->left);
 		std::cout << "}{";
-		printSubtree(node->right);
+		print(node->right);
 		std::cout << "}";
 	}
 }
 
-void BinaryTree::print() {
-	printSubtree(m_root);
+/**
+ * Lookup for a wanted value in the tree
+ * @param key_ term for search
+ * @return a reference to the node if found; NULL, otherwise.
+ */
+Node* BinaryTree::search(int key_) const {
+	return search(m_root, key_);
+}
+
+/**
+ * Recursive search feature
+ * @param node subtree's root
+ * @param key_ term for search
+ */
+Node* BinaryTree::search(Node* node, int key_) const {
+	// if we reach a NULL node, the term is not here
+	if (node == NULL) {
+		return NULL;
+	}
+	// if we find the key we got it
+	else if (node->key == key_) {
+		return node;
+	}
+	// otherwise, try looking to the subtrees. The left one
+	else if (key_ < node->key) {
+		return search(node->left, key_);
+	}
+	// and the right one
+	else {
+		return search(node->right, key_);
+	}
 }
 
 int main() {
@@ -64,4 +114,6 @@ int main() {
 	bt.insert(4);
 	bt.insert(20);
 	bt.print();
+	std::cout << std::endl;
+	Node* res = bt.search(20);
 }
