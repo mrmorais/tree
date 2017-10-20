@@ -107,6 +107,25 @@ Node* BinaryTree::search(Node* node, int key_) const {
 	}
 }
 
+/**
+ * Destroy the binary tree, turning it a empty tree
+ */
+void BinaryTree::destroy() {
+	destroy(m_root);
+}
+
+/**
+ * Recursive function to destroy a subtree
+ * @param node the subtree's root
+ */
+void BinaryTree::destroy(Node* node) {
+	if (node != NULL) {
+		destroy(node->left);
+		destroy(node->right);
+		delete node;
+	}
+}
+
 int main() {
 	BinaryTree bt = BinaryTree();
 	bt.insert(10);
