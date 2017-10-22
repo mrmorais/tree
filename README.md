@@ -22,3 +22,7 @@ Parte do arquivo [Big-O Cheat Sheet](https://www.packtpub.com/sites/default/file
 | Deletar | O(h) | O(n) |
 
 Em que *n* é a quantidade de elementos na árvore e *h* é a altura da mesma. Todos os casos médios foram O(log(n))
+
+**Heap Max**
+
+Construção (arrange) - O(n)
