@@ -1,0 +1,1 @@
+g++ -Wall -std=c++11 -I ../heap/includes -I ../binary_tree/includes ../heap/heap_max.cpp ../binary_tree/binary_tree.cpp questao_15.cpp -o bin/questao_15.out
