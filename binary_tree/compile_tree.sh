@@ -1,0 +1,1 @@
+g++ -Wall -std=c++11 drive_tree.cpp binary_tree.cpp -o bin/tree.out -I includes
