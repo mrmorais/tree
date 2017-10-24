@@ -25,4 +25,26 @@ Em que *n* é a quantidade de elementos na árvore e *h* é a altura da mesma. T
 
 **Heap Max**
 
-Construção (arrange) - O(n)
+| Operação | Complexidade |
+|----------|:----------:|
+| Construir | O(n) |
+| Descer | O(log(n)) |
+| Deletar | O(log(n)) |
+| Subir | O(log(n)) |
+| Inserir | O(log(n)) |
+| Heap sort | O(nlog(n)) |
+
+Inserção: Insere no final e sobe. 
+
+Deleção: Substitui o último com o primeiro e desce o primeiro.
+
+#### Heap sort
+```
+procedimento heapsort
+    arranjar(n) // O (n)
+    m <- n
+    enquanto (m > 1) faça // O (n)
+        troca(1, m)
+        m <- m - 1
+        descer(1, m) // O(log n)
+```
